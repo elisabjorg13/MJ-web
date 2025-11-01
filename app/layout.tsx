@@ -10,7 +10,7 @@ const inter = Inter({
 })
 
 // Configure custom font for headings
-export const monumentGrotesk = localFont({
+const monumentGrotesk = localFont({
   src: '../public/fonts/ABCMonumentGroteskMono-Regular.otf',
   display: 'swap',
   variable: '--font-monument',
