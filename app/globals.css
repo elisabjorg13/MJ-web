@@ -2,3 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1 {
+    font-family: var(--font-monument);
+  }
+}
+

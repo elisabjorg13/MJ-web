@@ -1,0 +1,15 @@
+{
+  "repositoryName": "mj-web",
+  "adapter": {
+    "resolve": "@slicemachine/adapter-next",
+    "options": {
+      "imports": {
+        "components": {
+          "from": "@/slices"
+        }
+      }
+    }
+  },
+  "libraries": ["./slices"],
+  "localSliceSimulatorURL": "http://localhost:3000/slice-simulator"
+}
