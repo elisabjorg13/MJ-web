@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
 import './globals.css'
+import Navbar from './components/Navbar'
 
 // Configure body font
 const inter = Inter({ 
@@ -16,6 +17,13 @@ const monumentGrotesk = localFont({
   variable: '--font-monument',
 })
 
+// Configure font for logo
+const abcSynt = localFont({
+  src: '../public/fonts/ABCSynt-Regular.otf',
+  display: 'swap',
+  variable: '--font-synt',
+})
+
 export const metadata: Metadata = {
   title: 'MJ',
   description: 'A simple white page',
@@ -28,7 +36,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${monumentGrotesk.variable}`}>{children}</body>
+      <body className={`${inter.className} ${monumentGrotesk.variable} ${abcSynt.variable}`}>
+        <Navbar />
+        <main>
+          {children}
+        </main>
+      </body>
     </html>
   )
 }

@@ -3,8 +3,39 @@
 @tailwind utilities;
 
 @layer base {
+  /* Hide scrollbar */
+  * {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+  
+  *::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+  
   h1 {
+    font-family: var(--font-synt);
+    font-size: 48px;
+    margin: 0;
+    line-height: 1;
+  }
+  
+  h2 {
+    font-family: var(--font-synt);
+    font-size: 24px;
+    margin: 0;
+    line-height: 1;
+  }
+  
+  p {
     font-family: var(--font-monument);
+    font-size: 16px;
+    margin: 0;
+    line-height: 1;
+  }
+  
+  .font-synt {
+    font-family: var(--font-synt);
   }
 }
 
