@@ -3,9 +3,10 @@
 import { createClient } from '@/prismicio';
 import { PrismicNextImage } from '@prismicio/next';
 import { useState, useEffect } from 'react';
+import type { Content } from '@prismicio/client';
 
 export default function Home() {
-  const [landingPages, setLandingPages] = useState<any[]>([]);
+  const [landingPages, setLandingPages] = useState<Content.LandingpageimageDocument[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
