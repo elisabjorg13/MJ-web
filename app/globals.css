@@ -13,6 +13,11 @@
     display: none; /* Chrome, Safari, Opera */
   }
   
+  /* Default text color */
+  body {
+    color: #2E2E2E;
+  }
+  
   h1 {
     font-family: var(--font-synt);
     font-size: 48px;
@@ -35,7 +40,11 @@
   }
   
   .font-synt {
-    font-family: var(--font-synt);
+    font-family: var(--font-synt) !important;
+  }
+  
+  .font-synt p {
+    font-family: var(--font-synt) !important;
   }
 }
 

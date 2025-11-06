@@ -83,6 +83,17 @@ interface LandingpageimageDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image: prismic.ImageField<never>;
+
+  /**
+   * title field in *landingPageImage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: title of image
+   * - **API ID Path**: landingpageimage.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
 }
 
 /**
@@ -101,7 +112,105 @@ export type LandingpageimageDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = LandingpageimageDocument;
+/**
+ * Content for WorkItem documents
+ */
+interface WorkitemDocumentData {
+  /**
+   * name field in *WorkItem*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Name of work item
+   * - **API ID Path**: workitem.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * workItemTitle field in *WorkItem*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g "Eddan Icelandic film awards"
+   * - **API ID Path**: workitem.workitemtitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  workitemtitle: prismic.KeyTextField;
+
+  /**
+   * workitemstatus field in *WorkItem*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g "Nomination"
+   * - **API ID Path**: workitem.workitemstatus
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  workitemstatus: prismic.KeyTextField;
+
+  /**
+   * workitemartist field in *WorkItem*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g "Magnús Jóhann"
+   * - **API ID Path**: workitem.workitemartist
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  workitemartist: prismic.KeyTextField;
+
+  /**
+   * workitemyear field in *WorkItem*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g "2025"
+   * - **API ID Path**: workitem.workitemyear
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  workitemyear: prismic.KeyTextField;
+
+  /**
+   * workitemdescription field in *WorkItem*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: description of work
+   * - **API ID Path**: workitem.workitemdescription
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  workitemdescription: prismic.KeyTextField;
+
+  /**
+   * workitemimage field in *WorkItem*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: workitem.workitemimage
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  workitemimage: prismic.ImageField<never>;
+}
+
+/**
+ * WorkItem document from Prismic
+ *
+ * - **API ID**: `workitem`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type WorkitemDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<WorkitemDocumentData>,
+    "workitem",
+    Lang
+  >;
+
+export type AllDocumentTypes = LandingpageimageDocument | WorkitemDocument;
 
 declare module "@prismicio/client" {
   interface CreateClient {
@@ -126,6 +235,8 @@ declare module "@prismicio/client" {
     export type {
       LandingpageimageDocument,
       LandingpageimageDocumentData,
+      WorkitemDocument,
+      WorkitemDocumentData,
       AllDocumentTypes,
     };
   }

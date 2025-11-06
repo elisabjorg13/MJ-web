@@ -7,7 +7,12 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        'md': '680px',   // Tablet breakpoint
+        'lg': '1020px',  // Desktop breakpoint (4 columns)
+      },
+    },
   },
   plugins: [],
 }

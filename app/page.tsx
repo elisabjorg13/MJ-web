@@ -13,13 +13,35 @@ export default function Home() {
     const fetchImages = async () => {
       const client = createClient();
       const pages = await client.getAllByType('landingpageimage');
-      setLandingPages(pages.filter(p => p.data.image));
+      const filtered = pages.filter(p => p.data.image);
+      // Sort by title (img1, img2, img3, etc.)
+      const sorted = filtered.sort((a, b) => {
+        const titleA = a.data.title || '';
+        const titleB = b.data.title || '';
+        return titleA.localeCompare(titleB, undefined, { numeric: true });
+      });
+      setLandingPages(sorted);
     };
     fetchImages();
   }, []);
 
+  // Auto-advance after 5 seconds
+  useEffect(() => {
+    if (landingPages.length === 0) return;
+    
+    const timer = setTimeout(() => {
+      setCurrentIndex((prev) => (prev + 1) % landingPages.length);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [currentIndex, landingPages.length]);
+
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % landingPages.length);
+  };
+
+  const handlePageClick = () => {
+    handleNext();
   };
 
   if (landingPages.length === 0) return <div className="bg-white h-screen pt-[70px]">Loading...</div>;
@@ -27,7 +49,7 @@ export default function Home() {
   const currentPage = landingPages[currentIndex];
 
   return (
-    <div className="bg-white h-screen pt-[70px]">
+    <div className="bg-white h-screen pt-[70px]" onClick={handlePageClick}>
       <div className="h-full flex items-end relative">
         {currentPage?.data.image && (
           <PrismicNextImage
@@ -40,9 +62,7 @@ export default function Home() {
         <button
           onClick={handleNext}
           className="fixed bottom-4 right-4 text-black px-4 py-2 rounded hover:bg-gray-800"
-        >
-          Next ({currentIndex + 1}/{landingPages.length})
-        </button>
+        > </button>
       </div>
     </div>
   )

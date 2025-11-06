@@ -19,6 +19,13 @@
           "constraint": {},
           "thumbnails": []
         }
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "title",
+          "placeholder": "title of image"
+        }
       }
     }
   }
