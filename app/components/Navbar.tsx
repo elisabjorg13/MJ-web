@@ -8,13 +8,13 @@ export default function Navbar() {
 
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white/60 border-b border-gray-200 z-50 h-[70px]">
+    <nav className="fixed top-0 left-0 right-0 bg-white/60 z-50 h-[70px]">
       <div className="w-full px-2 md:px-[18px] lg:px-5 h-full">
         <div className="mx-auto h-full flex items-end">
           <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0.5">
 
             {/* Column 1: Magnús Jóhann + subtitle */}
-            <div className="flex flex-col text-center justify-center border border-red-500">
+            <div className="flex flex-col text-center justify-center">
               <Link href="/">
                 <h1>Magnús Jóhann</h1>
               </Link>
@@ -22,10 +22,10 @@ export default function Navbar() {
             </div>
 
             {/* Column 2: Empty on desktop */}
-            <div className="hidden lg:block border border-red-500"></div>
+            <div className="hidden lg:block"></div>
 
             {/* Column 3: Works / Info nav links */}
-            <div className="flex flex-col items-center text-center border border-red-500">
+            <div className="flex flex-col items-center text-center invisible">
               <div className='flex flex-row min-h-[48px] items-center'>
                 {pathname === '/works' && <h1 className='mr-16'>Works</h1>}
                 {pathname === '/info' && <h1 className='ml-16'>Info</h1>}
