@@ -25,8 +25,8 @@ const abcSynt = localFont({
 })
 
 export const metadata: Metadata = {
-  title: 'MJ',
-  description: 'A simple white page',
+  title: 'Magnús Jóhann',
+  description: 'artist, composer & producer',
 }
 
 export default function RootLayout({
