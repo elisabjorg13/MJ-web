@@ -49,7 +49,7 @@ export default function Home() {
   const currentPage = landingPages[currentIndex];
 
   return (
-    <div className="bg-white h-screen pt-[70px]" onClick={handlePageClick}>
+    <div className="bg-white h-screen pt-[150px] md:pt-[70px]" onClick={handlePageClick}>
       <div className="h-full flex items-end relative">
         {currentPage?.data.image && (
           <PrismicNextImage

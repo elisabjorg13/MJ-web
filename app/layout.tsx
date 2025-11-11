@@ -27,6 +27,10 @@ const abcSynt = localFont({
 export const metadata: Metadata = {
   title: 'Magnús Jóhann',
   description: 'artist, composer & producer',
+  icons: {
+    icon: '/images/MJ_Favicon.jpg',
+    shortcut: '/images/MJ_Favicon.jpg',
+  },
 }
 
 export default function RootLayout({

@@ -8,7 +8,7 @@ export default function Navbar() {
 
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white/60 z-50 h-[70px]">
+    <nav className="fixed top-0 left-0 right-0 bg-white/60 z-50 h-[150px] md:h-[70px]">
       <div className="w-full px-2 md:px-[18px] lg:px-5 h-full">
         <div className="mx-auto h-full flex items-end">
           <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0.5">
