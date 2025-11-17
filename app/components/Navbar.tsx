@@ -18,24 +18,24 @@ export default function Navbar() {
               <Link href="/">
                 <h1>Magnús Jóhann</h1>
               </Link>
-              <p className=" mt-1">Artist, composer & producer</p>
+              <p className="">Artist, composer & producer</p>
             </div>
 
             {/* Column 2: Empty on desktop */}
             <div className="hidden lg:block"></div>
 
             {/* Column 3: Works / Info nav links */}
-            <div className="flex flex-col items-center text-center invisible">
+            <div className="flex flex-col items-center text-center">
               <div className='flex flex-row min-h-[48px] items-center'>
                 {pathname === '/works' && <h1 className='mr-16'>Works</h1>}
                 {pathname === '/info' && <h1 className='ml-16'>Info</h1>}
                 {pathname !== '/works' && pathname !== '/info' && <h1 className='opacity-0'>Works</h1>}
               </div>
               <div className='flex flex-row text-center justify-center gap-8'>
-                <Link href="/works" className={`transition-colors ${pathname === '/works' ? 'opacity-0 pointer-events-none select-none' : 'hover:text-gray-600'}`}>
+                <Link href="/works" className="opacity-0 pointer-events-none select-none">
                   <p>Works</p>
                 </Link>
-                <Link href="/info" className={`transition-colors ${pathname === '/info' ? 'opacity-0 pointer-events-none select-none' : 'hover:text-gray-600'}`}>
+                <Link href="/info" className="opacity-0 pointer-events-none select-none">
                   <p>Info</p>
                 </Link>
               </div>

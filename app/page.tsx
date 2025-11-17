@@ -49,8 +49,8 @@ export default function Home() {
   const currentPage = landingPages[currentIndex];
 
   return (
-    <div className="bg-white h-screen pt-[150px] md:pt-[70px]" onClick={handlePageClick}>
-      <div className="h-full flex items-end relative">
+    <div className="bg-white h-[100dvh] pt-[150px] md:pt-[70px] overflow-hidden" onClick={handlePageClick}>
+      <div className="h-full flex items-end relative pb-safe">
         {currentPage?.data.image && (
           <PrismicNextImage
             field={currentPage.data.image}
@@ -58,11 +58,6 @@ export default function Home() {
           />
         )}
         
-        {/* Dev Next Button */}
-        <button
-          onClick={handleNext}
-          className="fixed bottom-4 right-4 text-black px-4 py-2 rounded hover:bg-gray-800"
-        > </button>
       </div>
     </div>
   )

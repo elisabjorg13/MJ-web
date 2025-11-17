@@ -12,17 +12,12 @@ import { isFilled } from '@prismicio/client'; // <-- for safe image check
 
 export default function ResponsiveSketchGrid() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
-
   const [works, setWorks] = useState<Content.WorkitemDocument[]>([]);
 
   useEffect(() => {
     const fetchAll = async () => {
       const client = createClient();
 
-      // side image (optional)
-
-
-      // work items
       const docs = await client.getAllByType<Content.WorkitemDocument>('workitem', {
         orderings: [{ field: 'my.workitem.workitemyear', direction: 'desc' }],
       });
@@ -51,37 +46,70 @@ export default function ResponsiveSketchGrid() {
                 {/* List item row */}
                 <div
                   onClick={() => toggleExpand(work.id)}
-                  className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0.5 ${
-                    isExpanded ? 'bg-white !text-[#2E2E2E]' : 'bg-black !text-white'
-                  } border-b border-white/20 h-14 hover:bg-white hover:!text-[#2E2E2E] transition-colors cursor-pointer`}
+                  className={`
+                    grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-0.5
+                    ${isExpanded ? 'bg-white !text-[#2E2E2E]' : 'bg-black !text-white'}
+                    border-b border-white/20 h-14
+                    hover:bg-white hover:!text-[#2E2E2E]
+                    transition-colors cursor-pointer
+                  `}
                 >
                   {/* Mobile */}
                   <div className="md:hidden border border-red-500 flex">
-                    <p className={`flex-1 flex items-center border-r border-red-500 ${isExpanded ? 'font-synt text-[24px]' : ''}`}>
+                    <p
+                      className={`flex-1 flex items-center border-r border-red-500 ${
+                        isExpanded ? 'font-synt text-[24px]' : ''
+                      }`}
+                    >
                       {d.workitemtitle}
                     </p>
-                    <p className="flex-1 flex items-center ">{d.workitemyear}</p>
+                    <p className="flex-1 flex items-center">{d.workitemyear}</p>
                   </div>
 
                   {/* Tablet (2 cols) */}
-                  <p className={`hidden md:flex lg:hidden border border-red-500 items-center justify-center text-center ${isExpanded ? 'font-synt text-[24px]' : ''}`}>
+                  <p
+                    className={`hidden md:flex lg:hidden border border-red-500 items-center justify-center text-center ${
+                      isExpanded ? 'font-synt text-[24px]' : ''
+                    }`}
+                  >
                     {d.workitemtitle}
                   </p>
                   <div className="hidden md:flex lg:hidden border border-red-500">
-                    <p className="flex-1 flex items-center border-r border-red-500">{d.workitemstatus}</p>
-                    <p className="flex-1 flex items-center border-r border-red-500">{d.workitemartist}</p>
-                    <p className="flex-1 flex items-center text-right justify-end p-2">{d.workitemyear}</p>
+                    <p className="flex-1 flex items-center border-r border-red-500">
+                      {d.workitemstatus}
+                    </p>
+                    <p className="flex-1 flex items-center border-r border-red-500">
+                      {d.workitemartist}
+                    </p>
+                    <p className="flex-1 flex items-center justify-start p-2">
+                      {d.workitemyear}
+                    </p>
                   </div>
 
-                  {/* Desktop (3 cols) */}
-                  <p className={`hidden lg:flex border border-red-500 items-center justify-center text-center ${isExpanded ? 'font-synt text-[24px]' : ''}`}>
+                  {/* Desktop (6-col grid) */}
+                  {/* title spans col 1–2 */}
+                  <p
+                    className={`hidden lg:flex col-span-2 border border-red-500 items-center text-left pl-3 ${
+                      isExpanded ? 'font-synt text-[24px]' : ''
+                    }`}
+                  >
                     {d.workitemtitle}
                   </p>
-                  <div className="hidden lg:flex border border-red-500 flex-row">
-                    <p className="flex-1 flex items-center text-left border-r border-red-500/50">{d.workitemstatus}</p>
-                    <p className="flex-1 flex items-center text-center">{d.workitemartist}</p>
-                  </div>
-                  <p className="hidden lg:flex border border-red-500 items-center text-right justify-end p-2">{d.workitemyear}</p>
+
+                  {/* status in col 3 */}
+                  <p className="hidden lg:flex col-span-1 border border-red-500 items-center">
+                    {d.workitemstatus}
+                  </p>
+
+                  {/* artist spans col 4–5 (room for long names) */}
+                  <p className="hidden lg:flex col-span-2 border border-red-500 items-center">
+                    {d.workitemartist}
+                  </p>
+
+                  {/* year in col 6 */}
+                  <p className="hidden lg:flex col-span-1 border border-red-500 items-center justify-end p-2">
+                    {d.workitemyear}
+                  </p>
                 </div>
 
                 {/* Expanded content */}
@@ -97,12 +125,11 @@ export default function ResponsiveSketchGrid() {
                     </div>
 
                     {/* Image (per-work item) with fallback */}
-                    <div className="border border-red-500 flex items-center justify-center ">
+                    <div className="border border-red-500 flex items-center justify-center">
                       {isFilled.image(d.workitemimage) ? (
                         <PrismicNextImage
                           field={d.workitemimage}
                           className="w-full h-auto"
-                          // optional: sizes for responsive perf
                           sizes="(min-width: 1024px) 50vw, 100vw"
                         />
                       ) : (
@@ -117,8 +144,6 @@ export default function ResponsiveSketchGrid() {
             );
           })}
         </div>
-
-
       </div>
     </div>
   );

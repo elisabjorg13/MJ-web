@@ -34,7 +34,7 @@
   
   p {
     font-family: var(--font-monument);
-    font-size: 16px;
+    font-size: 14px;
     margin: 0;
     line-height: 1;
   }
@@ -48,3 +48,8 @@
   }
 }
 
+@layer utilities {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
