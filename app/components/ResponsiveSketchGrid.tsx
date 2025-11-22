@@ -124,7 +124,7 @@ export default function ResponsiveSketchGrid() {
                     </div>
 
                     {/* Image (per-work item) with fallback */}
-                    <div className="border border-red-500 w-full h-[370px] md:h-[494px] overflow-hidden flex items-start justify-start transition-none">
+                    <div className="border border-red-500 w-full h-[360px] md:h-[494px] overflow-hidden flex items-start justify-start transition-none">
                       {isFilled.image(d.workitemimage) ? (
                         <PrismicNextImage
                           field={d.workitemimage}
