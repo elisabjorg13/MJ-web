@@ -55,22 +55,20 @@ export default function ResponsiveSketchGrid() {
                   `}
                 >
                   {/* Mobile */}
-                  <div className="md:hidden border border-red-500 flex">
-                    <p
-                      className={`flex-1 flex items-center border-r border-red-500 ${
-                        isExpanded ? 'font-synt text-[24px]' : ''
-                      }`}
-                    >
-                      {d.workitemtitle}
-                    </p>
-                    <p className="flex-1 flex items-center">{d.workitemyear}</p>
+                  <div className="md:hidden border border-red-500 flex items-center justify-center p-2">
+                    <div className="flex flex-col flex-1">
+                      <p className={`text-center ${isExpanded ? 'font-synt text-[24px]' : ''}`}>{d.workitemtitle}</p>
+                      <div className="flex flex-row justify-between">
+                        <p>{d.workitemstatus}</p>
+                        <p>{d.workitemyear}</p>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Tablet (2 cols) */}
                   <p
-                    className={`hidden md:flex lg:hidden border border-red-500 items-center justify-center text-center ${
-                      isExpanded ? 'font-synt text-[24px]' : ''
-                    }`}
+                    className={`hidden md:flex lg:hidden border border-red-500 items-center justify-center text-center ${isExpanded ? 'font-synt text-[24px]' : ''
+                      }`}
                   >
                     {d.workitemtitle}
                   </p>
@@ -81,7 +79,7 @@ export default function ResponsiveSketchGrid() {
                     <p className="flex-1 flex items-center border-r border-red-500">
                       {d.workitemartist}
                     </p>
-                    <p className="flex-1 flex items-center justify-start p-2">
+                    <p className="flex-1 flex items-center justify-end p-2">
                       {d.workitemyear}
                     </p>
                   </div>
@@ -89,9 +87,8 @@ export default function ResponsiveSketchGrid() {
                   {/* Desktop (6-col grid) */}
                   {/* title spans col 1–2 */}
                   <p
-                    className={`hidden lg:flex col-span-2 border border-red-500 items-center text-left pl-3 ${
-                      isExpanded ? 'font-synt text-[24px]' : ''
-                    }`}
+                    className={`hidden lg:flex col-span-2 border border-red-500 items-center justify-center text-center ${isExpanded ? 'font-synt text-[24px]' : ''
+                      }`}
                   >
                     {d.workitemtitle}
                   </p>
@@ -114,23 +111,32 @@ export default function ResponsiveSketchGrid() {
 
                 {/* Expanded content */}
                 <div
-                  className={`bg-white text-black border-b border-gray-200 overflow-hidden transition-all duration-500 ${
-                    isExpanded ? 'h-[494px]' : 'h-0 p-0'
-                  }`}
+                  className={`bg-white text-black border-b border-gray-200 overflow-hidden transition-[height] duration-500 ${isExpanded ? 'h-[494px]' : 'h-0 p-0'
+                    }`}
                 >
-                  <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
+                  <div className="grid grid-cols-1 md:grid-cols-2 h-full ">
                     {/* Text content */}
-                    <div className="border border-red-500 text-[#2E2E2E] font-synt">
-                      <p className="text-[24px]">{d.workitemdescription}</p>
+                    <div className="border border-red-500 ">
+                      <div className="ml-2">
+                        <p className=''>{d.workitemartist}</p>
+                        <p className="text-[24px] font-synt">{d.workitemdescription}</p>
+                      </div>
                     </div>
 
                     {/* Image (per-work item) with fallback */}
-                    <div className="border border-red-500 flex items-center justify-center">
+                    <div className="border border-red-500 w-full h-[370px] md:h-[494px] overflow-hidden flex items-start justify-start transition-none">
                       {isFilled.image(d.workitemimage) ? (
                         <PrismicNextImage
                           field={d.workitemimage}
-                          className="w-full h-auto"
-                          sizes="(min-width: 1024px) 50vw, 100vw"
+                          className="transition-none"
+                          style={{
+                            maxWidth: '100%',
+                            maxHeight: '100%',
+                            width: 'auto',
+                            height: 'auto',
+                            objectFit: 'contain',
+                            objectPosition: 'left top'
+                          }}
                         />
                       ) : (
                         <div className="w-full h-full min-h-64 flex items-center justify-center border-2 border-dashed border-gray-300 text-gray-500">
