@@ -43,7 +43,9 @@ export default function ResponsiveSketchGrid() {
   // Get available images for a work item
   const getImages = (d: Content.WorkitemDocument["data"]) => {
     const images = [];
-    const data = d as any; // Type assertion for new fields
+    // Access new fields that aren't in the generated types yet
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const data = d as Content.WorkitemDocument["data"] & Record<string, any>;
     if (isFilled.image(data.workitemimage1)) images.push(data.workitemimage1);
     if (isFilled.image(data.workitemimage2)) images.push(data.workitemimage2);
     if (isFilled.image(data.workitemimage3)) images.push(data.workitemimage3);
