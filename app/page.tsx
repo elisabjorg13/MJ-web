@@ -10,6 +10,16 @@ export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
+    // Disable body scrolling on landing page
+    document.body.style.overflow = 'hidden';
+    
+    return () => {
+      // Re-enable scrolling when component unmounts
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
+
+  useEffect(() => {
     const fetchImages = async () => {
       const client = createClient();
       const pages = await client.getAllByType('landingpageimage');

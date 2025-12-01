@@ -12,6 +12,9 @@ const config: Config = {
         'md': '680px',   // Tablet breakpoint
         'lg': '1020px',  // Desktop breakpoint (4 columns)
       },
+      colors: {
+        'mj-extra': '#AFA7F0',
+      },
     },
   },
   plugins: [],

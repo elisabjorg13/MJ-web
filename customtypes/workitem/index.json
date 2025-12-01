@@ -55,10 +55,26 @@
           "placeholder": "description of work"
         }
       },
-      "workitemimage": {
+      "workitemimage1": {
         "type": "Image",
         "config": {
-          "label": "workitemimage",
+          "label": "Work Item Image 1 (Required)",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "workitemimage2": {
+        "type": "Image",
+        "config": {
+          "label": "Work Item Image 2 (Optional)",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "workitemimage3": {
+        "type": "Image",
+        "config": {
+          "label": "Work Item Image 3 (Optional)",
           "constraint": {},
           "thumbnails": []
         }
