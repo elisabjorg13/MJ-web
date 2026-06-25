@@ -41,10 +41,12 @@
   
   .font-synt {
     font-family: var(--font-synt) !important;
+    font-weight: 200;
   }
   
   .font-synt p {
     font-family: var(--font-synt) !important;
+    font-weight: 200;
   }
 }
 

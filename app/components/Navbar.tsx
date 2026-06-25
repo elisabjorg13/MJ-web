@@ -25,6 +25,7 @@ export default function Navbar() {
             <div className="hidden lg:block"></div>
 
             {/* Column 3: Works / Info nav links */}
+            {pathname !== '/' && (
             <div className="flex flex-col items-center text-center">
               <div className='flex flex-row min-h-[48px] items-center'>
                 {pathname === '/works' && <h1 className='mr-16'>Works</h1>}
@@ -32,14 +33,15 @@ export default function Navbar() {
                 {pathname !== '/works' && pathname !== '/info' && <h1 className='opacity-0'>Works</h1>}
               </div>
               <div className='flex flex-row text-center justify-center gap-8'>
-                <Link href="/works" className="opacity-0 pointer-events-none select-none">
+                <Link href="/works" className={pathname === '/works' ? 'invisible' : ''}>
                   <p>Works</p>
                 </Link>
-                <Link href="/info" className="opacity-0 pointer-events-none select-none">
+                <Link href="/info" className={pathname === '/info' ? 'invisible' : ''}>
                   <p>Info</p>
                 </Link>
               </div>
             </div>
+            )}
           </div>
         </div>
       </div>
