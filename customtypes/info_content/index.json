@@ -1,0 +1,28 @@
+{
+  "format": "custom",
+  "id": "info_content",
+  "label": "Info content",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "info_image": {
+        "type": "Image",
+        "config": {
+          "label": "Info image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "info_textcontent": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Info textcontent",
+          "placeholder": "content for info page",
+          "allowTargetBlank": true,
+          "multi": "preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      }
+    }
+  }
+}

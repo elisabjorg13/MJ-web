@@ -70,6 +70,49 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>["id"]];
 
 /**
+ * Content for Info content documents
+ */
+interface InfoContentDocumentData {
+  /**
+   * Info image field in *Info content*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: info_content.info_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  info_image: prismic.ImageField<never>;
+
+  /**
+   * Info textcontent field in *Info content*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: content for info page
+   * - **API ID Path**: info_content.info_textcontent
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  info_textcontent: prismic.RichTextField;
+}
+
+/**
+ * Info content document from Prismic
+ *
+ * - **API ID**: `info_content`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type InfoContentDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<InfoContentDocumentData>,
+    "info_content",
+    Lang
+  >;
+
+/**
  * Content for landingPageImage documents
  */
 interface LandingpageimageDocumentData {
@@ -183,15 +226,37 @@ interface WorkitemDocumentData {
   workitemdescription: prismic.KeyTextField;
 
   /**
-   * workitemimage field in *WorkItem*
+   * Work Item Image 1 (Required) field in *WorkItem*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: workitem.workitemimage
+   * - **API ID Path**: workitem.workitemimage1
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
-  workitemimage: prismic.ImageField<never>;
+  workitemimage1: prismic.ImageField<never>;
+
+  /**
+   * Work Item Image 2 (Optional) field in *WorkItem*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: workitem.workitemimage2
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  workitemimage2: prismic.ImageField<never>;
+
+  /**
+   * Work Item Image 3 (Optional) field in *WorkItem*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: workitem.workitemimage3
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  workitemimage3: prismic.ImageField<never>;
 }
 
 /**
@@ -210,7 +275,10 @@ export type WorkitemDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = LandingpageimageDocument | WorkitemDocument;
+export type AllDocumentTypes =
+  | InfoContentDocument
+  | LandingpageimageDocument
+  | WorkitemDocument;
 
 declare module "@prismicio/client" {
   interface CreateClient {
@@ -233,6 +301,8 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      InfoContentDocument,
+      InfoContentDocumentData,
       LandingpageimageDocument,
       LandingpageimageDocumentData,
       WorkitemDocument,
