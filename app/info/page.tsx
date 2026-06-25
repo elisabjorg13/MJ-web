@@ -40,13 +40,10 @@ export default function Info() {
                 href="https://www.instagram.com/magnus__johann/"
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                <p>Instagram</p>
-              </a>
+                className="inline hover:!text-[#b1b1b1] transition-colors"
+              >Instagram</a>
 
-              <p>
-                magnusjragnarsson@gmail.com
-              </p>
+              <a href="mailto:magnusjragnarsson@gmail.com" className="inline hover:!text-[#b1b1b1] transition-colors">magnusjragnarsson@gmail.com</a>
             </div>
             <div className="flex justify-center">
               <div className="inline-flex">
@@ -68,13 +65,10 @@ export default function Info() {
                 href="https://www.instagram.com/magnus__johann/"
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                <p>Instagram</p>
-              </a>
+                className="inline hover:!text-[#b1b1b1] transition-colors"
+              >Instagram</a>
 
-              <p>
-                magnusjragnarsson@gmail.com
-              </p>
+              <a href="mailto:magnusjragnarsson@gmail.com" className="inline hover:!text-[#b1b1b1] transition-colors">magnusjragnarsson@gmail.com</a>
             </div>
             <div className="flex justify-center">
               <Image
@@ -88,7 +82,7 @@ export default function Info() {
           </div>
 
           {/* Column 2 */}
-          <div className="md:ml-[50%] md:pt-[86px] px-4">
+          <div className="md:ml-[50%] md:pt-[86px] px-4 selection:bg-[#b1b1b1] selection:text-[#2E2E2E]">
             {isFilled.richText(data.info_textcontent) && (
               <div className="font-synt [&_p]:!text-[24px] [&_*]:!text-[24px] [&_*]:!text-[#2E2E2E] [&_a]:!text-[#2E2E2E] [&_p]:![line-height:1.2] [&_*]:![line-height:1.2]">
                 <PrismicRichText field={data.info_textcontent} />

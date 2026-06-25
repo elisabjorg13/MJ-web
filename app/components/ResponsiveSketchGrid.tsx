@@ -175,29 +175,7 @@ export default function ResponsiveSketchGrid() {
                           {d.workitemdescription}
                         </p>
                       </div>
-                      {/* Vertical carousel dots - top right */}
-                      {(() => {
-                        const images = getImages(d);
-                        const currentIndex = currentImageIndex[work.id] || 0;
-                        return images.length > 1 ? (
-                          <div className="absolute top-0 right-2 flex flex-col gap-2 z-10">
-                            {images.map((_, index) => (
-                              <button
-                                key={index}
-                                onClick={(e) =>
-                                  handleDotClick(work.id, index, e)
-                                }
-                                className={`w-2 h-2 rounded-full transition-all ${
-                                  index === currentIndex
-                                    ? "bg-[#AFA7F0]"
-                                    : "bg-gray-400 hover:bg-gray-600"
-                                }`}
-                                aria-label={`Go to image ${index + 1}`}
-                              />
-                            ))}
-                          </div>
-                        ) : null;
-                      })()}
+                    
                     </div>
 
                     {/* Image carousel (per-work item) */}
