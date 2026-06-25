@@ -65,15 +65,7 @@ export default function ResponsiveSketchGrid() {
     });
   };
 
-  // Handle dot click - jump to specific image
-  const handleDotClick = (
-    workId: string,
-    index: number,
-    e: React.MouseEvent
-  ) => {
-    e.stopPropagation(); // Prevent row toggle
-    setCurrentImageIndex((prev) => ({ ...prev, [workId]: index }));
-  };
+
 
   if (works.length === 0) {
     return <div className="w-full px-2 md:px-[18px] lg:px-5">Loading…</div>;
