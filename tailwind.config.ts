@@ -14,6 +14,9 @@ const config: Config = {
       },
       colors: {
         'mj-extra': '#AFA7F0',
+        'mj-grey': '#b1b1b1',
+        'mj-black': '#0D0D0D',
+        'mj-dark': '#2E2E2E',
       },
     },
   },

@@ -52,20 +52,6 @@ export default function ResponsiveSketchGrid() {
     return images;
   };
 
-  // Handle image click - advance to next image
-  const handleImageClick = (
-    workId: string,
-    totalImages: number,
-    e: React.MouseEvent
-  ) => {
-    e.stopPropagation(); // Prevent row toggle
-    setCurrentImageIndex((prev) => {
-      const current = prev[workId] || 0;
-      return { ...prev, [workId]: (current + 1) % totalImages };
-    });
-  };
-
-
 
   if (works.length === 0) {
     return <div className="w-full px-2 md:px-[18px] lg:px-5">Loading…</div>;
@@ -85,14 +71,14 @@ export default function ResponsiveSketchGrid() {
                   onClick={() => toggleExpand(work.id)}
                   className={`
                     grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-0.5
-                    ${isExpanded ? "bg-white !text-[#2E2E2E]" : "bg-black !text-white"}
+                    ${isExpanded ? "bg-white !text-[#2E2E2E]" : "bg-[#0D0D0D] !text-[#b1b1b1]"}
                     border-b border-white/20 h-14
                     hover:bg-white hover:!text-[#2E2E2E]
                     transition-colors cursor-pointer
                   `}
                 >
                   {/* Mobile */}
-                  <div className="md:hidden border border-red-500 flex items-center justify-center p-2">
+                  <div className="md:hidden flex items-center justify-center p-2">
                     <div className="flex flex-col flex-1">
                       <p
                         className={`text-center ${isExpanded ? "font-synt text-[24px]" : ""}`}
@@ -108,14 +94,14 @@ export default function ResponsiveSketchGrid() {
 
                   {/* Tablet (2 cols) */}
                   <p
-                    className={`hidden md:flex lg:hidden border  items-center justify-center text-center ${
+                    className={`hidden md:flex lg:hidden items-center justify-center text-center ${
                       isExpanded ? "font-synt text-[24px]" : ""
                     }`}
                   >
                     {d.workitemtitle}
                   </p>
-                  <div className="hidden md:flex lg:hidden border ">
-                    <p className="flex-1 flex items-center border-r">
+                  <div className="hidden md:flex lg:hidden">
+                    <p className="flex-1 flex items-center">
                       {d.workitemstatus}
                     </p>
                     <p className="flex-1 flex items-center ">
@@ -155,15 +141,14 @@ export default function ResponsiveSketchGrid() {
                 {/* Expanded content */}
                 <div
                   className={`bg-white text-black border-b border-gray-200 overflow-hidden transition-[height] duration-500 ${
-                    isExpanded ? "h-[494px]" : "h-0 p-0"
+                    isExpanded ? "h-auto md:h-[494px]" : "h-0 p-0"
                   }`}
                 >
                   <div className="grid grid-cols-1 md:grid-cols-2 h-full ">
                     {/* Text content */}
                     <div className="relative pr-2">
-                      <div className="ml-2">
-                        <p className="">{d.workitemartist}</p>
-                        <p className="text-[24px] font-synt">
+                      <div className="md:ml-2 [&_p]:[line-height:1.2]">
+                        <p className="text-[21px] md:text-[24px] font-synt">
                           {d.workitemdescription}
                         </p>
                       </div>
@@ -171,7 +156,8 @@ export default function ResponsiveSketchGrid() {
                     </div>
 
                     {/* Image carousel (per-work item) */}
-                    <div className="w-full h-[360px] md:h-[494px] overflow-hidden flex items-start justify-start">
+                    <div className="w-full flex flex-col md:block md:h-[494px]">
+                    <div className="w-full h-[360px] md:h-full relative">
                       {(() => {
                         const images = getImages(d);
                         const currentIndex = currentImageIndex[work.id] || 0;
@@ -186,27 +172,64 @@ export default function ResponsiveSketchGrid() {
                         }
 
                         return (
-                          <div
-                            className="w-full h-full flex items-start justify-start cursor-pointer"
-                            onClick={(e) =>
-                              handleImageClick(work.id, images.length, e)
-                            }
-                          >
+                          <div className="relative w-full h-full">
+                            {/* Desktop: left half - previous */}
+                            {images.length > 1 && (
+                              <div
+                                className="hidden md:block absolute left-0 top-0 w-1/2 h-full z-10"
+                                style={{ cursor: "url('/icons/Arrow-left.svg') 14 11, auto" }}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setCurrentImageIndex((prev) => {
+                                    const current = prev[work.id] || 0;
+                                    return { ...prev, [work.id]: (current - 1 + images.length) % images.length };
+                                  });
+                                }}
+                              />
+                            )}
+                            {/* Desktop: right half - next */}
+                            {images.length > 1 && (
+                              <div
+                                className="hidden md:block absolute right-0 top-0 w-1/2 h-full z-10"
+                                style={{ cursor: "url('/icons/Arrow-right.svg') 14 11, auto" }}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setCurrentImageIndex((prev) => {
+                                    const current = prev[work.id] || 0;
+                                    return { ...prev, [work.id]: (current + 1) % images.length };
+                                  });
+                                }}
+                              />
+                            )}
+                            {/* Mobile: tap anywhere to advance */}
+                            {images.length > 1 && (
+                              <div
+                                className="md:hidden absolute inset-0 z-10"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setCurrentImageIndex((prev) => {
+                                    const current = prev[work.id] || 0;
+                                    return { ...prev, [work.id]: (current + 1) % images.length };
+                                  });
+                                }}
+                              />
+                            )}
                             <PrismicNextImage
                               field={currentImage}
-                              className="transition-none"
-                              style={{
-                                maxWidth: "100%",
-                                maxHeight: "100%",
-                                width: "auto",
-                                height: "auto",
-                                objectFit: "contain",
-                                objectPosition: "left top",
-                              }}
+                              fill
+                              style={{ objectFit: "contain", objectPosition: "left top" }}
                             />
+
                           </div>
                         );
                       })()}
+                    </div>
+                    {/* Mobile counter bar */}
+                    <div className="md:hidden px-2 py-1">
+                      <p className="text-[#2E2E2E]">
+                        {(currentImageIndex[work.id] || 0) + 1}/{getImages(work.data).length}
+                      </p>
+                    </div>
                     </div>
                   </div>
                 </div>

@@ -17,6 +17,12 @@
   body {
     color: #2E2E2E;
   }
+
+  /* Custom text selection color */
+  ::selection {
+    background-color: #b1b1b1;
+    color: #2E2E2E;
+  }
   
   h1 {
     font-family: var(--font-synt);
