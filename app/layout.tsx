@@ -24,6 +24,13 @@ const abcSynt = localFont({
   variable: '--font-synt',
 })
 
+// ABC Synt Turbo — used for italic/emphasis text
+const abcSyntTurbo = localFont({
+  src: '../public/fonts/ABCSynt-Turbo.otf',
+  display: 'swap',
+  variable: '--font-turbo',
+})
+
 export const metadata: Metadata = {
   title: 'Magnús Jóhann',
   description: 'artist, composer & producer',
@@ -46,7 +53,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${monumentGrotesk.variable} ${abcSynt.variable}`}>
+      <body className={`${inter.className} ${monumentGrotesk.variable} ${abcSynt.variable} ${abcSyntTurbo.variable}`}>
         <Navbar />
         <main>
           {children}

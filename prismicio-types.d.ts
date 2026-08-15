@@ -275,9 +275,99 @@ export type WorkitemDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Item in *Ticket Tour → Ticket tour items*
+ */
+export interface TicketTourDocumentDataTicketsItem {
+  /**
+   * Date field in *Ticket Tour → Ticket tour items*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: ticket_tour.tickets[].date
+   * - **Documentation**: https://prismic.io/docs/fields/date
+   */
+  date: prismic.DateField;
+
+  /**
+   * Location field in *Ticket Tour → Ticket tour items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. Háskólabíó
+   * - **API ID Path**: ticket_tour.tickets[].location
+   * - **Documentation**: https://prismic.io/docs/fields/key-text
+   */
+  location: prismic.KeyTextField;
+
+  /**
+   * Ticket link field in *Ticket Tour → Ticket tour items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Link to purchase this ticket
+   * - **API ID Path**: ticket_tour.tickets[].ticket_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  ticket_link: prismic.LinkField;
+}
+
+/**
+ * Content for Ticket Tour documents
+ */
+interface TicketTourDocumentData {
+  /**
+   * Tour name field in *Ticket Tour*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. Japan tour
+   * - **API ID Path**: ticket_tour.tour_name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/key-text
+   */
+  tour_name: prismic.KeyTextField;
+
+  /**
+   * Artists field in *Ticket Tour*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. Magnús Jóhann & GDRN
+   * - **API ID Path**: ticket_tour.artists
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/key-text
+   */
+  artists: prismic.KeyTextField;
+
+  /**
+   * Ticket tour items field in *Ticket Tour*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: ticket_tour.tickets[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  tickets: prismic.GroupField<Simplify<TicketTourDocumentDataTicketsItem>>;
+}
+
+/**
+ * Ticket Tour document from Prismic
+ *
+ * - **API ID**: `ticket_tour`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TicketTourDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<TicketTourDocumentData>,
+    "ticket_tour",
+    Lang
+  >;
+
 export type AllDocumentTypes =
   | InfoContentDocument
   | LandingpageimageDocument
+  | TicketTourDocument
   | WorkitemDocument;
 
 declare module "@prismicio/client" {
@@ -305,6 +395,9 @@ declare module "@prismicio/client" {
       InfoContentDocumentData,
       LandingpageimageDocument,
       LandingpageimageDocumentData,
+      TicketTourDocument,
+      TicketTourDocumentData,
+      TicketTourDocumentDataTicketsItem,
       WorkitemDocument,
       WorkitemDocumentData,
       AllDocumentTypes,

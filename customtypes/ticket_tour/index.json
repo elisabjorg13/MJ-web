@@ -1,0 +1,64 @@
+{
+  "format": "custom",
+  "id": "ticket_tour",
+  "label": "Ticket Tour",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID",
+          "placeholder": "e.g. japan-tour"
+        }
+      },
+      "tour_name": {
+        "type": "Text",
+        "config": {
+          "label": "Tour name",
+          "placeholder": "e.g. Japan tour"
+        }
+      },
+      "artists": {
+        "type": "Text",
+        "config": {
+          "label": "Artists",
+          "placeholder": "e.g. Magnús Jóhann & GDRN"
+        }
+      },
+      "tickets": {
+        "type": "Group",
+        "config": {
+          "label": "Ticket tour items",
+          "repeat": true,
+          "fields": {
+            "date": {
+              "type": "Date",
+              "config": {
+                "label": "Date",
+                "placeholder": ""
+              }
+            },
+            "location": {
+              "type": "Text",
+              "config": {
+                "label": "Location",
+                "placeholder": "e.g. Háskólabíó"
+              }
+            },
+            "ticket_link": {
+              "type": "Link",
+              "config": {
+                "label": "Ticket link",
+                "placeholder": "Link to purchase this ticket",
+                "select": null,
+                "allowTargetBlank": true
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

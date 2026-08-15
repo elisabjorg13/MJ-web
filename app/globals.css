@@ -54,6 +54,14 @@
     font-family: var(--font-synt) !important;
     font-weight: 200;
   }
+
+  .font-turbo,
+  .font-synt em,
+  .font-synt i {
+    font-family: var(--font-turbo) !important;
+    font-style: normal;
+    font-weight: 200;
+  }
 }
 
 @layer utilities {

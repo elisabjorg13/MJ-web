@@ -85,7 +85,14 @@ export default function Info() {
           <div className="md:ml-[50%] md:pt-[86px] px-4 selection:bg-[#b1b1b1] selection:text-[#2E2E2E]">
             {isFilled.richText(data.info_textcontent) && (
               <div className="font-synt [&_p]:!text-[24px] [&_*]:!text-[24px] [&_*]:!text-[#2E2E2E] [&_a]:!text-[#2E2E2E] [&_p]:![line-height:1.2] [&_*]:![line-height:1.2]">
-                <PrismicRichText field={data.info_textcontent} />
+                <PrismicRichText
+                  field={data.info_textcontent}
+                  components={{
+                    em: ({ children }) => (
+                      <em className="font-turbo">{children}</em>
+                    ),
+                  }}
+                />
               </div>
             )}
           </div>
