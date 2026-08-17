@@ -59,6 +59,14 @@
     font-feature-settings: "ss04";
   }
 
+  .hyphens-auto {
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphenate-limit-lines: 2;
+    -webkit-hyphenate-limit-lines: 2;
+    hyphenate-limit-chars: 8 4 4;
+  }
+
   .font-turbo,
   .font-synt em,
   .font-synt i {

@@ -38,16 +38,12 @@ export default function Live() {
   }, []);
 
   if (!loaded) {
-    return (
-      <div className="min-h-screen bg-white pt-[150px] md:pt-[86px]">
-        <div className="w-full px-2 md:px-[18px] lg:px-5">Loading…</div>
-      </div>
-    );
+    return <div className="min-h-screen bg-white" />;
   }
 
   return (
     <div className="min-h-screen bg-white pt-[150px] md:pt-[86px] pb-16">
-      <div className="w-full flex flex-col items-center gap-3 px-4">
+      <div className="w-full flex flex-col items-center gap-3 px-2 md:px-4">
         {tours.map((tour) => {
           const { tour_name, artists, tickets } = tour.data;
           const artistNames = getArtistNames(artists);
@@ -56,16 +52,16 @@ export default function Live() {
           return (
             <article
               key={tour.id}
-              className="w-full max-w-[420px] bg-[#B1B1B1] rounded-[5px] px-3 pt-3 pb-3 text-[#2E2E2E]"
+              className="w-full md:max-w-[420px] bg-[#B1B1B1] rounded-[5px] px-2 pt-1 pb-3 text-[#2E2E2E]"
             >
               <div className="flex flex-col items-center text-center gap-1 mb-8">
                 {tour_name && (
-                  <h2 className="font-synt text-[40px] md:text-[48px] leading-[1.05]">
+                  <h2 className="font-synt text-[48px] leading-[1.05]">
                     {tour_name}
                   </h2>
                 )}
                 {firstArtist && (
-                  <div className="font-synt text-[24px] leading-[1.2] px-8">
+                  <div className="font-synt text-[24px] leading-[1.2]">
                     <p className="font-synt text-[24px] leading-[1.2]">
                       {firstArtist}
                     </p>
@@ -79,7 +75,7 @@ export default function Live() {
               </div>
 
               {tickets.length > 0 && (
-                <ul className="flex flex-col gap-1.5 -mx-1">
+                <ul className="flex flex-col gap-1.5">
                   {tickets.map((ticket, index) => {
                     const dateLabel = formatTourDate(ticket.date);
                     const location = ticket.location || "";

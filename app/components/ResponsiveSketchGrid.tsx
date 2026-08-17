@@ -54,7 +54,7 @@ export default function ResponsiveSketchGrid() {
 
 
   if (works.length === 0) {
-    return <div className="w-full px-2 md:px-[18px] lg:px-5">Loading…</div>;
+    return null;
   }
 
   return (
@@ -72,16 +72,16 @@ export default function ResponsiveSketchGrid() {
                   className={`
                     grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-0.5
                     ${isExpanded ? "bg-white !text-[#2E2E2E]" : "bg-[#0D0D0D] !text-[#b1b1b1]"}
-                    border-b border-white/20 h-14
+                    border-b border-white/20 min-h-14 h-auto md:h-14
                     hover:bg-white hover:!text-[#2E2E2E]
                     transition-colors cursor-pointer
                   `}
                 >
                   {/* Mobile */}
                   <div className="md:hidden flex items-center justify-center p-2">
-                    <div className="flex flex-col flex-1">
+                    <div className="flex flex-col flex-1 gap-1">
                       <p
-                        className={`text-center ${isExpanded ? "font-synt text-[24px]" : ""}`}
+                        className={`text-center ${isExpanded ? "font-synt text-[24px] leading-[1.1]" : ""}`}
                       >
                         {d.workitemtitle}
                       </p>
@@ -140,10 +140,13 @@ export default function ResponsiveSketchGrid() {
 
                 {/* Expanded content */}
                 <div
-                  className={`bg-white text-black border-b border-gray-200 overflow-hidden transition-[height] duration-500 ${
-                    isExpanded ? "h-auto md:h-[494px]" : "h-0 p-0"
+                  className={`grid overflow-hidden bg-white text-black border-b border-gray-200 transition-[grid-template-rows,height] duration-500 ${
+                    isExpanded
+                      ? "grid-rows-[1fr] md:grid-rows-none md:h-[494px]"
+                      : "grid-rows-[0fr] md:grid-rows-none md:h-0"
                   }`}
                 >
+                  <div className="min-h-0 overflow-hidden md:h-full">
                   <div className="grid grid-cols-1 md:grid-cols-2 h-full ">
                     {/* Text content */}
                     <div className="relative pr-2">
@@ -231,6 +234,7 @@ export default function ResponsiveSketchGrid() {
                       </p>
                     </div>
                     </div>
+                  </div>
                   </div>
                 </div>
               </div>

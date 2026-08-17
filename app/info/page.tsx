@@ -22,11 +22,7 @@ export default function Info() {
   }, []);
 
   if (!infoContent) {
-    return (
-      <div className="min-h-screen bg-white pt-[150px] md:pt-[86px]">
-        <div className="w-full px-2 md:px-[18px] lg:px-5">Loading…</div>
-      </div>
-    );
+    return <div className="min-h-screen bg-white" />;
   }
 
   const data = infoContent.data;
@@ -84,7 +80,10 @@ export default function Info() {
           {/* Column 2 */}
           <div className="md:ml-[50%] md:pt-[86px] px-4 selection:bg-[#b1b1b1] selection:text-[#2E2E2E]">
             {isFilled.richText(data.info_textcontent) && (
-              <div className="font-synt [&_p]:!text-[24px] [&_*]:!text-[24px] [&_*]:!text-[#2E2E2E] [&_a]:!text-[#2E2E2E] [&_p]:![line-height:1.2] [&_*]:![line-height:1.2]">
+              <div
+                lang="en"
+                className="font-synt hyphens-auto [&_p]:!text-[24px] [&_*]:!text-[24px] [&_*]:!text-[#2E2E2E] [&_a]:!text-[#2E2E2E] [&_p]:![line-height:1.2] [&_*]:![line-height:1.2]"
+              >
                 <PrismicRichText
                   field={data.info_textcontent}
                   components={{

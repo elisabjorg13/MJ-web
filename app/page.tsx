@@ -54,7 +54,7 @@ export default function Home() {
     setCurrentIndex((prev) => (prev - 1 + landingPages.length) % landingPages.length);
   };
 
-  if (landingPages.length === 0) return <div className="bg-white h-screen pt-[70px]">Loading...</div>;
+  if (landingPages.length === 0) return <div className="bg-white h-screen" />;
 
   const currentPage = landingPages[currentIndex];
   const hasCarousel = landingPages.length > 1;
