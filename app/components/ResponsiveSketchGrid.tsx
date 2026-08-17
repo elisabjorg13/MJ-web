@@ -177,7 +177,7 @@ export default function ResponsiveSketchGrid() {
                             {images.length > 1 && (
                               <div
                                 className="hidden md:block absolute left-0 top-0 w-1/2 h-full z-10"
-                                style={{ cursor: "url('/icons/Arrow-left.svg') 14 11, auto" }}
+                                style={{ cursor: "url('/icons/Arrow-left.svg') 32 26, auto" }}
                                 onClick={(e) => {
                                   e.stopPropagation();
                                   setCurrentImageIndex((prev) => {
@@ -191,7 +191,7 @@ export default function ResponsiveSketchGrid() {
                             {images.length > 1 && (
                               <div
                                 className="hidden md:block absolute right-0 top-0 w-1/2 h-full z-10"
-                                style={{ cursor: "url('/icons/Arrow-right.svg') 14 11, auto" }}
+                                style={{ cursor: "url('/icons/Arrow-right.svg') 32 26, auto" }}
                                 onClick={(e) => {
                                   e.stopPropagation();
                                   setCurrentImageIndex((prev) => {

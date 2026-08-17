@@ -12,6 +12,15 @@ function formatTourDate(date: string | null | undefined) {
   return `${day}.${month}.${year}`;
 }
 
+function getArtistNames(
+  artists: Content.TicketTourDocument["data"]["artists"] | unknown
+) {
+  if (!Array.isArray(artists)) return [];
+  return artists
+    .map((artist) => artist.name?.trim())
+    .filter((name): name is string => Boolean(name));
+}
+
 export default function Live() {
   const [tours, setTours] = useState<Content.TicketTourDocument[]>([]);
   const [loaded, setLoaded] = useState(false);
@@ -41,11 +50,13 @@ export default function Live() {
       <div className="w-full flex flex-col items-center gap-3 px-4">
         {tours.map((tour) => {
           const { tour_name, artists, tickets } = tour.data;
+          const artistNames = getArtistNames(artists);
+          const [firstArtist, ...otherArtists] = artistNames;
 
           return (
             <article
               key={tour.id}
-              className="w-full max-w-[420px] bg-[#B1B1B1] rounded-[5px] px-6 pt-3 pb-3 text-[#2E2E2E]"
+              className="w-full max-w-[420px] bg-[#B1B1B1] rounded-[5px] px-3 pt-3 pb-3 text-[#2E2E2E]"
             >
               <div className="flex flex-col items-center text-center gap-1 mb-8">
                 {tour_name && (
@@ -53,15 +64,22 @@ export default function Live() {
                     {tour_name}
                   </h2>
                 )}
-                {artists && (
-                  <p className="font-synt text-[24px] md:text-[24px] leading-[1.2] whitespace-pre-line">
-                    {artists}
-                  </p>
+                {firstArtist && (
+                  <div className="font-synt text-[24px] leading-[1.2] px-8">
+                    <p className="font-synt text-[24px] leading-[1.2]">
+                      {firstArtist}
+                    </p>
+                    {otherArtists.length > 0 && (
+                      <p className="font-synt text-[24px] leading-[1.2]">
+                        {`& ${otherArtists.join(", ")}`}
+                      </p>
+                    )}
+                  </div>
                 )}
               </div>
 
               {tickets.length > 0 && (
-                <ul className="flex flex-col gap-1.5">
+                <ul className="flex flex-col gap-1.5 -mx-1">
                   {tickets.map((ticket, index) => {
                     const dateLabel = formatTourDate(ticket.date);
                     const location = ticket.location || "";

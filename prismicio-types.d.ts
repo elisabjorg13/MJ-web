@@ -311,6 +311,21 @@ export interface TicketTourDocumentDataTicketsItem {
 }
 
 /**
+ * Item in *Ticket Tour → Artists*
+ */
+export interface TicketTourDocumentDataArtistsItem {
+  /**
+   * Artist name field in *Ticket Tour → Artists*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. Magnús Jóhann
+   * - **API ID Path**: ticket_tour.artists[].name
+   * - **Documentation**: https://prismic.io/docs/fields/key-text
+   */
+  name: prismic.KeyTextField;
+}
+
+/**
  * Content for Ticket Tour documents
  */
 interface TicketTourDocumentData {
@@ -328,13 +343,13 @@ interface TicketTourDocumentData {
   /**
    * Artists field in *Ticket Tour*
    *
-   * - **Field Type**: Text
-   * - **Placeholder**: e.g. Magnús Jóhann & GDRN
-   * - **API ID Path**: ticket_tour.artists
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: ticket_tour.artists[]
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/key-text
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
-  artists: prismic.KeyTextField;
+  artists: prismic.GroupField<Simplify<TicketTourDocumentDataArtistsItem>>;
 
   /**
    * Ticket tour items field in *Ticket Tour*
@@ -397,6 +412,7 @@ declare module "@prismicio/client" {
       LandingpageimageDocumentData,
       TicketTourDocument,
       TicketTourDocumentData,
+      TicketTourDocumentDataArtistsItem,
       TicketTourDocumentDataTicketsItem,
       WorkitemDocument,
       WorkitemDocumentData,

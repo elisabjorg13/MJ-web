@@ -29,6 +29,7 @@
     font-size: 48px;
     margin: 0;
     line-height: 1;
+    font-feature-settings: "ss04";
   }
   
   h2 {
@@ -36,6 +37,7 @@
     font-size: 24px;
     margin: 0;
     line-height: 1;
+    font-feature-settings: "ss04";
   }
   
   p {
@@ -48,11 +50,13 @@
   .font-synt {
     font-family: var(--font-synt) !important;
     font-weight: 200;
+    font-feature-settings: "ss04";
   }
   
   .font-synt p {
     font-family: var(--font-synt) !important;
     font-weight: 200;
+    font-feature-settings: "ss04";
   }
 
   .font-turbo,
@@ -61,6 +65,7 @@
     font-family: var(--font-turbo) !important;
     font-style: normal;
     font-weight: 200;
+    font-feature-settings: "ss04";
   }
 }
 

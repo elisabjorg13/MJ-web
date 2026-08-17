@@ -21,10 +21,19 @@
         }
       },
       "artists": {
-        "type": "Text",
+        "type": "Group",
         "config": {
           "label": "Artists",
-          "placeholder": "e.g. Magnús Jóhann & GDRN"
+          "repeat": true,
+          "fields": {
+            "name": {
+              "type": "Text",
+              "config": {
+                "label": "Artist name",
+                "placeholder": "e.g. Magnús Jóhann"
+              }
+            }
+          }
         }
       },
       "tickets": {
