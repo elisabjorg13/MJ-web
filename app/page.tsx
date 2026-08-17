@@ -50,16 +50,32 @@ export default function Home() {
     setCurrentIndex((prev) => (prev + 1) % landingPages.length);
   };
 
-  const handlePageClick = () => {
-    handleNext();
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + landingPages.length) % landingPages.length);
   };
 
   if (landingPages.length === 0) return <div className="bg-white h-screen pt-[70px]">Loading...</div>;
 
   const currentPage = landingPages[currentIndex];
+  const hasCarousel = landingPages.length > 1;
 
   return (
-    <div className="bg-white h-[100dvh] pt-[150px] md:pt-[70px] overflow-hidden" onClick={handlePageClick}>
+    <div className="bg-white h-[100dvh] pt-[150px] md:pt-[70px] overflow-hidden relative">
+      {hasCarousel && (
+        <>
+          <div
+            className="hidden md:block fixed left-0 top-0 w-1/2 h-full z-10"
+            style={{ cursor: "url('/icons/Arrow-left.svg') 32 26, auto" }}
+            onClick={handlePrev}
+          />
+          <div
+            className="hidden md:block fixed right-0 top-0 w-1/2 h-full z-10"
+            style={{ cursor: "url('/icons/Arrow-right.svg') 32 26, auto" }}
+            onClick={handleNext}
+          />
+          <div className="md:hidden fixed inset-0 z-10" onClick={handleNext} />
+        </>
+      )}
       <div className="h-full flex items-end relative pb-safe">
         {currentPage?.data.image && (
           <PrismicNextImage
