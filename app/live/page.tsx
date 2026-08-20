@@ -54,14 +54,14 @@ export default function Live() {
               key={tour.id}
               className="w-full md:max-w-[420px] bg-[#B1B1B1] rounded-[5px] px-2 pt-1 pb-3 text-[#2E2E2E]"
             >
-              <div className="flex flex-col items-center text-center gap-1 mb-8">
+              <div className="flex flex-col items-center text-center gap-0 mb-8">
                 {tour_name && (
-                  <h2 className="font-synt text-[48px] leading-[1.05]">
+                  <h2 className="font-synt text-[48px] leading-none">
                     {tour_name}
                   </h2>
                 )}
                 {firstArtist && (
-                  <div className="font-synt text-[24px] leading-[1.2]">
+                  <div className="font-synt text-[24px] leading-[1.2] mt-0.5">
                     <p className="font-synt text-[24px] leading-[1.2]">
                       {firstArtist}
                     </p>
